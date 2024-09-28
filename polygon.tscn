@@ -38,4 +38,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "CLEAR"
 
+[node name="Move" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MOVE"
+
+[node name="DxSelector" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+placeholder_text = "dx"
+
+[node name="DySelector" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+placeholder_text = "dy"
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Move" to="." method="_on_move_pressed"]
