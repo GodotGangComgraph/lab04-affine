@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwnujpo3d3n1a"]
+[gd_scene load_steps=3 format=3 uid="uid://cwnujpo3d3n1a"]
 
 [ext_resource type="Script" path="res://polygon.gd" id="1_qvuv8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m2jv"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -30,7 +32,7 @@ theme_override_constants/margin_bottom = 20
 [node name="MenuPanel" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_direction = 3
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="Clear" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
 custom_minimum_size = Vector2(100, 50)
@@ -52,5 +54,11 @@ placeholder_text = "dx"
 layout_mode = 2
 placeholder_text = "dy"
 
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2m2jv")
+
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Clear" to="." method="_on_clear_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Move" to="." method="_on_move_pressed"]
+[connection signal="gui_input" from="VBoxContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]
