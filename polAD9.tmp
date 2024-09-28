@@ -54,19 +54,12 @@ placeholder_text = "dx"
 layout_mode = 2
 placeholder_text = "dy"
 
-[node name="CheckPolygon" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="Check" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 toggle_mode = true
-text = "CHECK POLYGON"
-
-[node name="CheckLeftRight" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-toggle_mode = true
-text = "CHECK LEFT/RIGHT"
+text = "CHECK"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
