@@ -187,6 +187,13 @@ button_pressed = true
 button_group = ExtResource("2_tcp6m")
 text = "DRAW POLYGON"
 
+[node name="DrawIntersect" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+button_group = ExtResource("2_tcp6m")
+text = "DRAW INTERSECTION"
+
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -204,6 +211,16 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PointSc" type="Label" parent="."]
 modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.00868056
+anchor_bottom = 0.0354938
+pivot_offset = Vector2(5, 13)
+text = "o"
+metadata/_edit_use_anchors_ = true
+
+[node name="PointInt" type="Label" parent="."]
+modulate = Color(0.0999999, 0, 1, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.00868056
