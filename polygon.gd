@@ -75,6 +75,10 @@ func _on_panel_container_gui_input(event: InputEvent) -> void:
 
 func _on_clear_pressed() -> void:
 	polygon.clear()
+	point_rot.position = Vector2(0, 0)
+	point_int.position = Vector2(0, 0)
+	point_sc.position = Vector2(0, 0)
+	intersection.clear()
 	queue_redraw()
 
 
