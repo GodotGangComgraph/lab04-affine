@@ -19,6 +19,9 @@ extends Control
 @onready var point_rot: Label = $PointRot
 @onready var point_sc: Label = $PointSc
 
+@onready var checkbox_rot: CheckBox = $VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer/PointRot
+@onready var checkbox_sc: CheckBox = $VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer/PointSc
+
 const FLOATING_TEXT = preload("res://floating_text.tscn")
 
 var polygon: Array[Vector2]
@@ -45,6 +48,14 @@ func _on_panel_container_gui_input(event: InputEvent) -> void:
 				is_point_in_polygon(event.global_position)
 			elif check_left_right_btn.button_pressed:
 				check_left_right(event.global_position)
+			elif checkbox_rot.button_pressed:
+				point_rot.position = get_global_mouse_position()-point_rot.pivot_offset
+				point_rot_x.text = str(point_rot.position.x - point_rot.pivot_offset.x)
+				point_rot_y.text = str(point_rot.position.y - point_rot.pivot_offset.y)
+			elif checkbox_sc.button_pressed:
+				point_sc.position = get_global_mouse_position()-point_sc.pivot_offset
+				point_sc_x.text = str(point_sc.position.x - point_sc.pivot_offset.x)
+				point_sc_y.text = str(point_sc.position.y - point_sc.pivot_offset.y)
 
 
 func _on_clear_pressed() -> void:
@@ -141,8 +152,8 @@ func apply_scale(point):
 	var T = DenseMatrix.identity(3)
 	T.set_element(0, 0, float(sc_x.text))
 	T.set_element(1, 1, float(sc_y.text))
-	T.set_element(2, 0, (1-float(sc_x.text))*point_sc.position.x)
-	T.set_element(2, 1, (1-float(sc_y.text))*point_sc.position.y)
+	T.set_element(2, 0, (1-float(sc_x.text))*(point_sc.position.x-point_sc.pivot_offset.x))
+	T.set_element(2, 1, (1-float(sc_y.text))*(point_sc.position.y-point_sc.pivot_offset.y))
 	
 	var V: DenseMatrix = DenseMatrix.from_packed_array([1, 1, 1], 1, 3)
 	V.set_element(0, 0, point.x)
@@ -165,8 +176,8 @@ func apply_rotation(point):
 	T.set_element(0, 1, sin_r)
 	T.set_element(1, 0, -sin_r)
 	T.set_element(1, 1, cos_r)
-	var a = point_rot.position.x
-	var b = point_rot.position.y
+	var a = point_rot.position.x-point_rot.pivot_offset.x
+	var b = point_rot.position.y-point_rot.pivot_offset.y
 	T.set_element(2, 0, -a*cos_r+b*sin_r+a)
 	T.set_element(2, 1, -a*sin_r-b*cos_r+b)
 	
@@ -185,15 +196,6 @@ func _on_apply_pressed() -> void:
 		polygon[i] = apply_rotation(polygon[i])
 	
 	queue_redraw()
-
-
-
-func _on_point_rot_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_point_sc_pressed() -> void:
-	pass # Replace with function body.
 
 
 func _on_center_rot_pressed() -> void:
@@ -233,3 +235,19 @@ func _on_center_sc_pressed() -> void:
 	point_sc.position = Vector2((x_max + x_min)/2, (y_max + y_min)/2)-point_sc.pivot_offset
 	point_sc_x.text = str(point_sc.position.x)
 	point_sc_y.text = str(point_sc.position.y)
+
+
+func _on_rot_x_text_changed(new_text: String) -> void:
+	point_rot.position = Vector2(float(new_text), point_rot.position.y)
+
+
+func _on_rot_y_text_changed(new_text: String) -> void:
+	point_rot.position = Vector2(point_rot.position.x, float(new_text))
+
+
+func _on_sc_x_text_changed(new_text: String) -> void:
+	point_sc.position = Vector2(float(new_text), point_sc.position.y)
+
+
+func _on_sc_y_text_changed(new_text: String) -> void:
+	point_sc.position = Vector2(point_sc.position.x, float(new_text))

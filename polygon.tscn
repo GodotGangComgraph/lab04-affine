@@ -95,10 +95,11 @@ placeholder_text = "x"
 layout_mode = 2
 placeholder_text = "y"
 
-[node name="PointRot" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+[node name="PointRot" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
+button_group = ExtResource("2_tcp6m")
 text = "POINT"
 
 [node name="CenterRot" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
@@ -143,10 +144,11 @@ placeholder_text = "x"
 layout_mode = 2
 placeholder_text = "y"
 
-[node name="PointSc" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+[node name="PointSc" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
+button_group = ExtResource("2_tcp6m")
 text = "POINT"
 
 [node name="CenterSc" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
@@ -211,9 +213,11 @@ text = "o"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Clear" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer/PointRot" to="." method="_on_point_rot_pressed"]
+[connection signal="text_changed" from="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer/X" to="." method="_on_rot_x_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer/Y" to="." method="_on_rot_y_text_changed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer/CenterRot" to="." method="_on_center_rot_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer/PointSc" to="." method="_on_point_sc_pressed"]
+[connection signal="text_changed" from="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer/X" to="." method="_on_sc_x_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer/Y" to="." method="_on_sc_y_text_changed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer/CenterSc" to="." method="_on_center_sc_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Apply" to="." method="_on_apply_pressed"]
 [connection signal="gui_input" from="VBoxContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]
