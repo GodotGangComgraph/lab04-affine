@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwnujpo3d3n1a"]
+[gd_scene load_steps=5 format=3 uid="uid://cwnujpo3d3n1a"]
 
 [ext_resource type="Script" path="res://polygon.gd" id="1_qvuv8"]
+[ext_resource type="PackedScene" uid="uid://d8w0qecxnk7h" path="res://line_edit.tscn" id="2_anqth"]
 [ext_resource type="ButtonGroup" uid="uid://hm1aouqwv58w" path="res://new_button_group.tres" id="2_tcp6m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m2jv"]
@@ -54,11 +55,11 @@ text = "TRANSLATION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dx" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Translation"]
+[node name="Dx" parent="VBoxContainer/MarginContainer/MenuPanel/Translation" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "dx"
 
-[node name="Dy" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Translation"]
+[node name="Dy" parent="VBoxContainer/MarginContainer/MenuPanel/Translation" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "dy"
 
@@ -79,18 +80,18 @@ text = "ROTATION"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Rot" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/Rotation"]
+[node name="Rot" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/Rotation" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "°"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation"]
 layout_mode = 2
 
-[node name="X" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+[node name="X" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "x"
 
-[node name="Y" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+[node name="Y" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "y"
 
@@ -123,18 +124,18 @@ text = "SCALE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sc" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/Scale"]
+[node name="Sc" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/Scale" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "*"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Scale"]
 layout_mode = 2
 
-[node name="X" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+[node name="X" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "x"
 
-[node name="Y" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+[node name="Y" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer" instance=ExtResource("2_anqth")]
 layout_mode = 2
 placeholder_text = "y"
 

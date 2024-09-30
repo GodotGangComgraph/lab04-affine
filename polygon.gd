@@ -81,8 +81,20 @@ func is_point_in_polygon(point: Vector2) -> bool:
 			var intersection_x = v1.x + (point.y - v1.y) * (v2.x - v1.x) / (v2.y - v1.y)
 			if point.x < intersection_x:
 				intersects += 1
-
-	return intersects % 2 == 1  # Нечетное количество пересечений — точка внутри
+	
+	var result = intersects % 2 == 1
+	
+	var floating_text = FLOATING_TEXT.instantiate()
+	floating_text.text = str(result)
+	floating_text.position = get_global_mouse_position()
+	
+	if result:
+		floating_text.self_modulate = Color(255, 0, 0)
+	else:
+		floating_text.self_modulate = Color(0, 0, 255)
+	
+	add_child(floating_text)
+	return result # Нечетное количество пересечений — точка внутри
 
 
 func check_left_right(to_check: Vector2):
@@ -107,7 +119,14 @@ func check_left_right(to_check: Vector2):
 	var vecprod = (to_check - a).x * min_edge.y - (to_check - a).y * min_edge.x
 	
 	var floating_text = FLOATING_TEXT.instantiate()
-	floating_text.text = "Left" if vecprod > 0 else "Right"
+	var result = "Left" if vecprod > 0 else "Right"
+	floating_text.text = result
 	floating_text.position = get_global_mouse_position()
+	
+	if result == "Left":
+		floating_text.self_modulate = Color(255, 0, 0)
+	else:
+		floating_text.self_modulate = Color(0, 0, 255)
+	
 	add_child(floating_text)
-	return "Left" if vecprod > 0 else "Right"
+	return result
