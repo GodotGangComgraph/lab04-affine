@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwnujpo3d3n1a"]
+[gd_scene load_steps=4 format=3 uid="uid://cwnujpo3d3n1a"]
 
 [ext_resource type="Script" path="res://polygon.gd" id="1_qvuv8"]
+[ext_resource type="ButtonGroup" uid="uid://hm1aouqwv58w" path="res://new_button_group.tres" id="2_tcp6m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m2jv"]
 
@@ -13,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qvuv8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,56 +24,167 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="MenuPanel" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
-layout_direction = 3
+[node name="MenuPanel" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_filter = 0
 
-[node name="Clear2" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="Clear" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-size_flags_horizontal = 4
 text = "CLEAR"
 
-[node name="Move" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Translation" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Translate" type="Label" parent="VBoxContainer/MarginContainer/MenuPanel/Translation"]
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "MOVE"
+text = "TRANSLATION"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DxSelector" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="Dx" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Translation"]
 layout_mode = 2
 placeholder_text = "dx"
 
-[node name="DySelector" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="Dy" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Translation"]
 layout_mode = 2
 placeholder_text = "dy"
 
-[node name="CheckPolygon" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Rotation" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Rotation" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation"]
+layout_mode = 2
+
+[node name="Rotate" type="Label" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/Rotation"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "ROTATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rot" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/Rotation"]
+layout_mode = 2
+placeholder_text = "°"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation"]
+layout_mode = 2
+
+[node name="X" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "x"
+
+[node name="Y" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "y"
+
+[node name="Point" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-toggle_mode = true
+text = "POINT"
+
+[node name="Center" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Rotation/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TO CENTER"
+
+[node name="VSplitContainer3" type="VSplitContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Scale" type="VBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Scale" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Scale"]
+layout_mode = 2
+
+[node name="Scale" type="Label" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/Scale"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SCALE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sc" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/Scale"]
+layout_mode = 2
+placeholder_text = "*"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/MenuPanel/Scale"]
+layout_mode = 2
+
+[node name="X" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "x"
+
+[node name="Y" type="LineEdit" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "y"
+
+[node name="Point" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "POINT"
+
+[node name="Center" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel/Scale/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TO CENTER"
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VBoxContainer/MarginContainer/MenuPanel"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "APPLY CHANGES"
+
+[node name="CheckPolygon" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+button_group = ExtResource("2_tcp6m")
 text = "CHECK POLYGON"
 
-[node name="CheckLeftRight" type="Button" parent="VBoxContainer/MarginContainer/MenuPanel"]
+[node name="CheckLeftRight" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
-toggle_mode = true
+button_group = ExtResource("2_tcp6m")
 text = "CHECK LEFT/RIGHT"
+
+[node name="DrawPolygon" type="CheckBox" parent="VBoxContainer/MarginContainer/MenuPanel"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+button_group = ExtResource("2_tcp6m")
+text = "DRAW POLYGON"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2m2jv")
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Clear2" to="." method="_on_clear_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Move" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/MenuPanel/Clear" to="." method="_on_clear_pressed"]
 [connection signal="gui_input" from="VBoxContainer/PanelContainer" to="." method="_on_panel_container_gui_input"]
