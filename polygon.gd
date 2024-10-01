@@ -70,7 +70,9 @@ func _on_panel_container_gui_input(event: InputEvent) -> void:
 					intersection[intersection_index] = event.global_position
 					var point = find_intersection()
 					if point != Vector2(-1, -1):
-						point_int.position = point
+						point_int.position = point - point_int.pivot_offset
+					else:
+						point_int.position = Vector2(0, 0)
 					queue_redraw()
 
 func _on_clear_pressed() -> void:
@@ -274,20 +276,32 @@ func scalprod(ab: Vector2, cd: Vector2):
 	return ab.x * cd.x + ab.y * cd.y
 
 func find_intersection():
+	var epsilon = 1e-5
 	var old_point = polygon[0]
 	for i in range(1, polygon.size() + 1):
 		var point = polygon[i % polygon.size()]
 		var ab = point - old_point
 		var cd = intersection[1] - intersection[0]
-		var n = Vector2(-(-cd).y, (-cd).x)
+		var n = Vector2(-cd.y, cd.x)
+		
 		var divisor = scalprod(n, ab)
-		if divisor > 1e-6:
-			var t = -scalprod(n, old_point - intersection[0]) / divisor
-			var p = old_point + t * ab - point_int.pivot_offset
-			if (min(intersection[0].x, intersection[1].x) <= p.x and p.x <= max(intersection[0].x, intersection[1].x)) \
-			and (min(intersection[0].y, intersection[1].y) <= p.y and p.y <= max(intersection[0].y, intersection[1].y)):
-				#if (min(old_point.x, point.x) <= p.x and p.x <= max(old_point.x, point.x)) \
-				#and (min(old_point.y, point.y) <= p.y and p.y <= max(old_point.y, point.y)):
-					return p;
+		if abs(divisor) < epsilon:
+			old_point = point
+			continue
+		
+		var t = -scalprod(n, old_point - intersection[0]) / divisor
+		if t < 0 or t > 1:
+			old_point = point
+			continue
+			
+		var p = old_point + t * ab
+		
+		if min(intersection[0].x, intersection[1].x) - epsilon <= p.x and p.x <= max(intersection[0].x, intersection[1].x) + epsilon and \
+		   min(intersection[0].y, intersection[1].y) - epsilon <= p.y and p.y <= max(intersection[0].y, intersection[1].y) + epsilon:
+			if min(old_point.x, point.x) - epsilon <= p.x and p.x <= max(old_point.x, point.x) + epsilon and \
+			   min(old_point.y, point.y) - epsilon <= p.y and p.y <= max(old_point.y, point.y) + epsilon:
+				return p
+				
 		old_point = point
+		
 	return Vector2(-1, -1)
